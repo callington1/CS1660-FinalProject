@@ -15,3 +15,5 @@
 	  7. Don't click the button multiple times
 ## Special Cases
  - The visual studio app require a password to connect: "visualstudio"
+ 
+ link to folder with walkthrough https://1drv.ms/u/s!Alsrhoq0ltGag68L7BHG8CGKDKKg_A?e=8302Us
