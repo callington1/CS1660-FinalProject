@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+
+  gui:
+    image: callington1/final:flaskgui
+    ports:
+      - 5000:5000
+      
+  rstudio:
+    image: callington1/final:rstudio
+    ports:
+      - 8787:8787
+    environment:
+      -  DISABLE_AUTH=true
+      
+  orange:
+    image: callington1/final:orange
+    ports:
+      -  6901:6901
+    environment:
+      -  DISABLE_AUTH=true
+    
+  spyder:
+    image: callington1/final:spyder
+    ports:
+      -  7070:7070
+    environment:
+      -  DISPLAY=host.docker.internal:0
+    volumes:
+      -  /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    depends_on:
+      -  gui
+      
+  markdown:
+    image: callington1/final:markdown
+    ports:
+      -  12345:80
+      
+  visualstudio:
+    image: callington1/final:visualstudio
+    ports:
+      -  6080:6080
+    environment:
+      -  PASSWORD=visualstudio
+      
+  tensorflow:
+    image: callington1/final:tensorflow
+    ports:
+      -  7575:7575
+    environment:
+      -  DISPLAY=host.docker.internal:0
+    volumes:
+      -  /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    depends_on:
+      -  gui
+      
+  git:
+    image: callington1/final:git
+    ports: 
+      -  9191:9191
+    environment:
+      -  DISPLAY=host.docker.internal:0
+    volumes:
+      -  /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    depends_on:
+      -  gui
+      
+  spark:
+    image: callington1/final:spark
+    ports: 
+      -  5151:5151
+    environment:
+      -  DISPLAY=host.docker.internal:0
+    volumes:
+      -  /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    depends_on:
+      -  gui
